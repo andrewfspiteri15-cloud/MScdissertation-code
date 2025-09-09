@@ -289,8 +289,8 @@ def test_accuracy(best_trial):
     testset = DanceDataset(file2, transform = transform)
     
     ## for weighted cross entropy https://stackoverflow.com/questions/61414065/pytorch-weight-in-cross-entropy-loss https://androidkt.com/how-to-use-class-weight-in-crossentropyloss-for-an-imbalanced-dataset/ https://discuss.pytorch.org/t/passing-the-weights-to-crossentropyloss-correctly/14731/8
-    y = trainset.img_labels
-    class_weights=class_weight.compute_class_weight('balanced',np.unique(y),y)
+    y1 = trainset.img_labels
+    class_weights=class_weight.compute_class_weight('balanced',np.unique(y1),y1)
     class_weights=torch.tensor(class_weights,dtype=torch.float)
 
     criterion = nn.CrossEntropyLoss(weight = class_weights)
@@ -384,3 +384,4 @@ def main(num_samples=20, max_num_epochs=50, gpus_per_trial=2):
 
 ## Number of samples to take and epochs to run them over
 main(num_samples=20, max_num_epochs=50, gpus_per_trial=0)
+
